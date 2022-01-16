@@ -1,0 +1,44 @@
+version: '3.9'
+
+
+services:
+  mongodbLocal:
+    image: mongo:3.6
+    container_name: 'container-mongodbLocal'
+    environment:
+      - MONGO_INITDB_DATABASE=reworthtify
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=123456
+    volumes:
+      - ./services/mongodb/mongodbLocal-volume:/data/db
+    ports:
+      - '27017-27019:27017-27019'
+    networks:
+      - main
+  rewothtify-service:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - ./.env
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/usr/app/reworth
+    depends_on:
+      - mongodbLocal
+    command: npm run dev
+    networks:
+      - main
+
+volumes:
+  mongodbLocal-volume:
+    driver: local
+
+networks:
+  main:
+    name: main
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: "pepanet"
