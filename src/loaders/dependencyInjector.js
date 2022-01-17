@@ -2,14 +2,13 @@ const { Container } = require('typedi');
 const LoggerInstance = require('./logger');
 
 module.exports = ({
-  mongoConnection,
   models,
 }) => {
   try {
     models.forEach((m) => {
       Container.set(m.name, m.model);
     });
-
+    // logger injected into container
     Container.set('logger', LoggerInstance);
 
   } catch (e) {

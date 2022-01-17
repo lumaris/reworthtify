@@ -2,15 +2,15 @@ version: '3.9'
 
 
 services:
-  mongodbLocal:
-    image: mongo:3.6
-    container_name: 'container-mongodbLocal'
+  localmongodb:
+    image: mongo:4.4
+    container_name: 'container-localmongodb'
     environment:
       - MONGO_INITDB_DATABASE=reworthtify
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=123456
     volumes:
-      - ./services/mongodb/mongodbLocal-volume:/data/db
+      - ./services/mongodb/localmongodb-volume:/data/db
     ports:
       - '27017-27019:27017-27019'
     networks:
@@ -27,13 +27,13 @@ services:
     volumes:
       - ./:/usr/app/reworth
     depends_on:
-      - mongodbLocal
+      - localmongodb
     command: npm run dev
     networks:
       - main
 
 volumes:
-  mongodbLocal-volume:
+  localmongodb-volume:
     driver: local
 
 networks:
