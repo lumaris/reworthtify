@@ -9,7 +9,7 @@ Base api for spotify data consumption
 ### Document content
 
 * [Run in local environmet with docker-compose](#run-local-environmet)
-* [Unit test](#unit-test)
+* [Run test](#test)
 * [Documentation](#documentation)
 
 #run-local-environmet
