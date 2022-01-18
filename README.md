@@ -16,7 +16,7 @@ Base api for spotify data consumption
 
 1.- Step-by-step shell commands
 ```shell
-git clone https://github.com/lumaris/api.git
+git clone https://github.com/lumaris/reworthtify.git
 cd reworthtify
 npm install
 docker-compose up
